@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hành trình Xanh - 9 ngày 4 trạm dành cho học sinh lớp 3</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+    body { font-family: 'Nunito', sans-serif; background-color: #f0fdf4; }
+    .card-shadow { box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.15); }
+  </style>
+</head>
+<body class="pb-20">
+  <!-- Header / Thanh điều hướng trên -->
+  <header class="bg-emerald-600 text-white p-4 sticky top-0 z-50 shadow-md flex justify-between items-center">
+    <div class="flex items-center space-x-2">
+      <i class="fa-solid fa-leaf text-2xl text-yellow-300"></i>
+      <h1 class="text-xl font-bold tracking-wide">Hành Trình Xanh Lớp 3</h1>
+    </div>
+    <div id="user-display" class="bg-emerald-700 px-3 py-1 rounded-full text-sm font-semibold flex items-center gap-2">
+      <i class="fa-solid fa-user-check text-yellow-300"></i>
+      <span id="username-val">Bạn nhỏ</span>
+    </div>
+  </header>
+
+  <main class="max-w-2xl mx-auto p-4 space-y-6">
+    <!-- Trang Màn hình chính / Đăng nhập -->
+    <section id="sec-login" class="bg-white p-6 rounded-3xl card-shadow border-2 border-emerald-100 text-center space-y-4">
+      <div class="w-24 h-24 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-4xl shadow-inner">
+        🌱
+      </div>
+      <h2 class="text-2xl font-bold text-emerald-800">Chào mừng Đại sứ Xanh nhí!</h2>
+      <p class="text-gray-600 text-sm">Hãy nhập tên của em để bắt đầu chuyến phiêu lưu 9 ngày bảo vệ môi trường nhé:</p>
+      <div class="flex gap-2 max-w-sm mx-auto">
+        <input type="text" id="input-name" placeholder="Nhập tên của em..." class="w-full px-4 py-3 border-2 border-emerald-200 rounded-xl focus:outline-none focus:border-emerald-500 font-semibold text-center text-emerald-800">
+        <button onclick="saveName()" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition">Vào học</button>
+      </div>
+    </section>
+
+    <!-- Bản đồ Hành trình 9 Ngày 4 Trạm -->
+    <section class="bg-white p-6 rounded-3xl card-shadow border-2 border-emerald-100 space-y-4">
+      <h2 class="text-xl font-bold text-emerald-800 flex items-center gap-2">
+        <i class="fa-solid fa-map-location-dot text-emerald-600"></i>
+        Bản đồ 9 Ngày 4 Trạm
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Trạm 1 -->
+        <div class="p-4 rounded-2xl bg-sky-50 border-2 border-sky-200 space-y-2">
+          <div class="flex justify-between items-center">
+            <span class="bg-sky-500 text-white text-xs font-bold px-3 py-1 rounded-full">Trạm 1 (Ngày 1-2)</span>
+            <span class="text-sky-600 text-xl font-bold">💧</span>
+          </div>
+          <h3 class="font-bold text-sky-900 text-lg">Tiết kiệm nước</h3>
+          <p class="text-xs text-sky-700">Nhận biết tầm quan trọng của nước sạch và thực hành tiết kiệm nước hằng ngày.</p>
+          <button onclick="openTab('station1')" class="w-full bg-sky-500 text-white font-bold py-2 rounded-xl hover:bg-sky-600 text-sm shadow">Khám phá Trạm 1</button>
+        </div>
+
+        <!-- Trạm 2 -->
+        <div class="p-4 rounded-2xl bg-amber-50 border-2 border-amber-200 space-y-2">
+          <div class="flex justify-between items-center">
+            <span class="bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full">Trạm 2 (Ngày 3-4)</span>
+            <span class="text-amber-600 text-xl font-bold">🗑️</span>
+          </div>
+          <h3 class="font-bold text-amber-900 text-lg">Phân loại & Giảm rác</h3>
+          <p class="text-xs text-amber-700">Học cách phân loại rác hữu cơ, tái chế và bỏ rác đúng thùng quy định.</p>
+          <button onclick="openTab('station2')" class="w-full bg-amber-500 text-white font-bold py-2 rounded-xl hover:bg-amber-600 text-sm shadow">Khám phá Trạm 2</button>
+        </div>
+
+        <!-- Trạm 3 -->
+        <div class="p-4 rounded-2xl bg-yellow-50 border-2 border-yellow-200 space-y-2">
+          <div class="flex justify-between items-center">
+            <span class="bg-yellow-500 text-white text-xs font-bold px-3 py-1 rounded-full">Trạm 3 (Ngày 5-6)</span>
+            <span class="text-yellow-600 text-xl font-bold">⚡</span>
+          </div>
+          <h3 class="font-bold text-yellow-900 text-lg">Tiết kiệm điện</h3>
+          <p class="text-xs text-yellow-700">Tìm hiểu nguồn điện và thực hành tắt thiết bị điện khi không sử dụng.</p>
+          <button onclick="openTab('station3')" class="w-full bg-yellow-500 text-white font-bold py-2 rounded-xl hover:bg-yellow-600 text-sm shadow">Khám phá Trạm 3</button>
+        </div>
+
+        <!-- Trạm 4 -->
+        <div class="p-4 rounded-2xl bg-emerald-50 border-2 border-emerald-200 space-y-2">
+          <div class="flex justify-between items-center">
+            <span class="bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full">Trạm 4 (Ngày 7-8)</span>
+            <span class="text-emerald-600 text-xl font-bold">🌳</span>
+          </div>
+          <h3 class="font-bold text-emerald-900 text-lg">Bảo vệ cây xanh</h3>
+          <p class="text-xs text-emerald-700">Khám phá vai trò của cây xanh và thực hành chăm sóc mầm cây.</p>
+          <button onclick="openTab('station4')" class="w-full bg-emerald-500 text-white font-bold py-2 rounded-xl hover:bg-emerald-600 text-sm shadow">Khám phá Trạm 4</button>
+        </div>
+      </div>
+
+      <!-- Ngày 9 Tổng kết -->
+      <div class="p-5 rounded-2xl bg-purple-50 border-2 border-purple-200 text-center space-y-3">
+        <span class="bg-purple-600 text-white text-xs font-bold px-4 py-1 rounded-full">Ngày 9 (Tổng kết)</span>
+        <h3 class="font-bold text-purple-900 text-xl">Vinh danh Đại sứ Xanh</h3>
+        <p class="text-xs text-purple-700">Tổng kết kiến thức và nhận Giấy chứng nhận điện tử!</p>
+        <button onclick="openTab('day9')" class="bg-purple-600 hover:bg-purple-700 text-white font-bold px-6 py-2.5 rounded-xl shadow-lg text-sm">Bấm để nhận Giấy chứng nhận 🏆</button>
+      </div>
+    </section>
+
+    <!-- Khu vực Chatbot AI -->
+    <section class="bg-white p-6 rounded-3xl card-shadow border-2 border-emerald-100 space-y-3">
+      <h3 class="font-bold text-emerald-800 flex items-center gap-2">
+        <i class="fa-solid fa-robot text-emerald-600"></i>
+        Trợ lý AI "Mầm" hỏi đáp
+      </h3>
+      <div id="chat-box" class="h-40 bg-gray-50 border p-3 rounded-xl overflow-y-auto text-sm space-y-2">
+        <div class="bg-emerald-100 text-emerald-900 p-2.5 rounded-2xl max-w-xs">
+          🤖 Xin chào! Mình là Mầm. Bạn có thắc mắc gì về bảo vệ môi trường không?
+        </div>
+      </div>
+      <div class="flex gap-2">
+        <input id="chat-input" type="text" placeholder="Hỏi Mầm điều gì đó..." class="w-full border rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-emerald-500">
+        <button onclick="sendMessage()" class="bg-emerald-500 text-white font-bold px-4 py-2 rounded-xl text-sm hover:bg-emerald-600">Gửi</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal / Cửa sổ hiển thị từng trạm -->
+  <div id="modal-station" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-xl rounded-3xl p-6 space-y-4 max-h-[90vh] overflow-y-auto relative">
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl font-bold">&times;</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <script>
+    function saveName() {
+      const name = document.getElementById('input-name').value.trim();
+      if(name) {
+        document.getElementById('username-val').innerText = name;
+        alert('Chào mừng ' + name + ' đã tham gia Hành trình Xanh!');
+      } else {
+        alert('Em hãy nhập tên của mình nhé!');
+      }
+    }
+
+    function openTab(tab) {
+      const modal = document.getElementById('modal-station');
+      const content = document.getElementById('modal-content');
+      modal.classList.remove('hidden');
+
+      if(tab === 'station1') {
+        content.innerHTML = `
+          <h2 class="text-2xl font-bold text-sky-800 mb-2">💧 Trạm 1: Tiết kiệm nước</h2>
+          <p class="text-sm text-gray-600 mb-4"><b>Ngày 1 (Nhận biết):</b> Nước là tài nguyên quý giá. Tắt vòi nước khi đánh răng giúp tiết kiệm hàng chục lít nước mỗi ngày!</p>
+          <hr class="my-3">
+          <h3 class="font-bold text-sky-900 mb-2">Trắc nghiệm nhanh:</h3>
+          <p class="text-sm font-semibold mb-2">Câu hỏi: Việc làm nào sau đây giúp tiết kiệm nước?</p>
+          <button onclick="alert('Đúng rồi! Bạn rất giỏi 👏')" class="w-full text-left bg-sky-50 p-3 rounded-xl mb-2 hover:bg-sky-100 font-medium text-sm">A. Khóa vòi nước trong khi đánh răng</button>
+          <button onclick="alert('Chưa đúng rồi, thử lại nhé!')" class="w-full text-left bg-gray-50 p-3 rounded-xl hover:bg-gray-100 font-medium text-sm">B. Để vòi nước chảy tràn khi rửa tay</button>
+        `;
+      } else if(tab === 'station2') {
+        content.innerHTML = `
+          <h2 class="text-2xl font-bold text-amber-800 mb-2">🗑️ Trạm 2: Phân loại rác</h2>
+          <p class="text-sm text-gray-600 mb-4"><b>Ngày 3 (Nhận biết):</b> Vỏ trái cây là rác hữu cơ, chai nhựa là rác tái chế!</p>
+          <hr class="my-3">
+          <h3 class="font-bold text-amber-900 mb-2">Game thực hành:</h3>
+          <p class="text-sm mb-3">Vỏ chuối nên bỏ vào thùng rác nào?</p>
+          <div class="flex gap-2">
+            <button onclick="alert('Chính xác! Vỏ chuối là rác hữu cơ 🌱')" class="flex-1 bg-green-500 text-white font-bold py-3 rounded-xl text-center">Thùng Hữu Cơ</button>
+            <button onclick="alert('Sai rồi, hãy chọn lại nhé!')" class="flex-1 bg-yellow-500 text-white font-bold py-3 rounded-xl text-center">Thùng Tái Chế</button>
+          </div>
+        `;
+      } else if(tab === 'station3') {
+        content.innerHTML = `
+          <h2 class="text-2xl font-bold text-yellow-800 mb-2">⚡ Trạm 3: Tiết kiệm điện</h2>
+          <p class="text-sm text-gray-600 mb-4"><b>Ngày 5 (Nhận biết):</b> Tắt quạt và đèn khi ra khỏi phòng giúp tiết kiệm điện năng!</p>
+          <button onclick="alert('Bạn đã tắt điện thành công! 🌟')" class="w-full bg-yellow-500 text-white font-bold py-3 rounded-xl">Thực hành tắt thiết bị lãng phí</button>
+        `;
+      } else if(tab === 'station4') {
+        content.innerHTML = `
+          <h2 class="text-2xl font-bold text-emerald-800 mb-2">🌳 Trạm 4: Bảo vệ cây xanh</h2>
+          <p class="text-sm text-gray-600 mb-4">Cây xanh cung cấp oxy cho chúng ta thở. Không bẻ cành ngắt hoa nhé!</p>
+          <button onclick="alert('Mầm cây đã nở hoa rực rỡ! 🌸')" class="w-full bg-emerald-500 text-white font-bold py-3 rounded-xl">Tưới nước cho mầm cây</button>
+        `;
+      } else if(tab === 'day9') {
+        const user = document.getElementById('username-val').innerText;
+        content.innerHTML = `
+          <div class="text-center space-y-4 border-4 border-yellow-400 p-6 rounded-2xl bg-yellow-50">
+            <h2 class="text-2xl font-extrabold text-yellow-700">GIẤY CHỨNG NHẬN</h2>
+            <p class="text-sm text-gray-700">Chứng nhận em:</p>
+            <h3 class="text-2xl font-bold text-emerald-700 underline">${user}</h3>
+            <p class="text-sm text-gray-700">Đã xuất sắc hoàn thành <b>Hành trình 9 ngày 4 trạm</b> và chính thức trở thành <b>ĐẠI SỨ XANH NHÍ</b> bảo vệ môi trường!</p>
+            <div class="text-4xl">🏅🏆🌿</div>
+            <button onclick="window.print()" class="bg-emerald-600 text-white font-bold px-6 py-2 rounded-xl text-sm">In / Lưu chứng nhận</button>
+          </div>
+        `;
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('modal-station').classList.add('hidden');
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('chat-input');
+      const box = document.getElementById('chat-box');
+      if(input.value.trim()) {
+        box.innerHTML += `<div class="bg-gray-200 text-gray-800 p-2 rounded-xl max-w-xs ml-auto text-right text-xs mb-1">${input.value}</div>`;
+        setTimeout(() => {
+          box.innerHTML += `<div class="bg-emerald-100 text-emerald-900 p-2.5 rounded-2xl max-w-xs text-xs mb-1">🤖 Mầm đã nhận được câu hỏi: "${input.value}". Hãy nhớ luôn bảo vệ môi trường nhé!</div>`;
+          box.scrollTop = box.scrollHeight;
+        }, 500);
+        input.value = '';
+      }
+    }
+  </script>
+</body>
+</html>
